@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.20827.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DugoutDB", "DugoutDB\DugoutDB.vbproj", "{687AFD82-76E5-4A4A-A143-F23C58908DD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DugoutDataAccess", "DugoutDataAccess\DugoutDataAccess.csproj", "{ECC82809-1913-4DD3-87F7-145139C4B0A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{687AFD82-76E5-4A4A-A143-F23C58908DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{687AFD82-76E5-4A4A-A143-F23C58908DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{687AFD82-76E5-4A4A-A143-F23C58908DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{687AFD82-76E5-4A4A-A143-F23C58908DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC82809-1913-4DD3-87F7-145139C4B0A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC82809-1913-4DD3-87F7-145139C4B0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC82809-1913-4DD3-87F7-145139C4B0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC82809-1913-4DD3-87F7-145139C4B0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
