@@ -26,6 +26,19 @@
             <End Role="Sport" EntitySet="Sports" />
             <End Role="League" EntitySet="Leagues" />
           </AssociationSet>
+          <AssociationSet Name="MatchTeam" Association="DugoutModel.MatchTeam">
+            <End Role="Match" EntitySet="Matches" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="TeamMatch" Association="DugoutModel.TeamMatch">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <EntitySet Name="Stadia" EntityType="DugoutModel.Stadium" />
+          <AssociationSet Name="StadiumMatch" Association="DugoutModel.StadiumMatch">
+            <End Role="Stadium" EntitySet="Stadia" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Sport">
           <Key>
@@ -41,6 +54,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="String" Nullable="false" />
+          <NavigationProperty Name="Team" Relationship="DugoutModel.MatchTeam" FromRole="Match" ToRole="Team" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Team1" Relationship="DugoutModel.TeamMatch" FromRole="Match" ToRole="Team" />
+          <Property Name="TeamId1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Stadium" Relationship="DugoutModel.StadiumMatch" FromRole="Match" ToRole="Stadium" />
+          <Property Name="StadiumId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -48,6 +67,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="League" Relationship="DugoutModel.TeamLeague" FromRole="Team" ToRole="League" />
+          <NavigationProperty Name="Matches" Relationship="DugoutModel.MatchTeam" FromRole="Team" ToRole="Match" />
+          <NavigationProperty Name="Matches1" Relationship="DugoutModel.TeamMatch" FromRole="Team" ToRole="Match" />
+          <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="League">
           <Key>
@@ -57,6 +79,7 @@
           <NavigationProperty Name="Teams" Relationship="DugoutModel.TeamLeague" FromRole="League" ToRole="Team" />
           <NavigationProperty Name="Sport" Relationship="DugoutModel.SportLeague" FromRole="League" ToRole="Sport" />
           <Property Name="SportId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Bet">
           <Key>
@@ -77,6 +100,51 @@
             </Principal>
             <Dependent Role="League">
               <PropertyRef Name="SportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MatchTeam">
+          <End Type="DugoutModel.Match" Role="Match" Multiplicity="*" />
+          <End Type="DugoutModel.Team" Role="Team" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamMatch">
+          <End Type="DugoutModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="DugoutModel.Match" Role="Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="TeamId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Stadium">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Matches" Relationship="DugoutModel.StadiumMatch" FromRole="Stadium" ToRole="Match" />
+          <Property Name="Location" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="StadiumMatch">
+          <End Type="DugoutModel.Stadium" Role="Stadium" Multiplicity="1" />
+          <End Type="DugoutModel.Match" Role="Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stadium">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="StadiumId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
